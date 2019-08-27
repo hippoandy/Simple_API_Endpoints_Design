@@ -150,7 +150,7 @@ project
 │
 └───API Code
 │   │   app.py:                   API server endpoint main program
-│   │   config.py:                Storing global variables and program settings
+│   │   config.py:                Storing global variables and settings
 │   │   query.py:                 Storing the function for db connection
 │   │   sql_command.py:           Storing the SQL commands
 │   │   utils.py:                 Stroing several utility functions
