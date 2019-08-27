@@ -12,6 +12,8 @@ The server provides API endpoints to get information from the database in the fo
 
 The API server is implemented using ***Python-Flask*** with **Python 3.7**. A ***MariaDB (MySQL)*** open-source database software is utilized as the data storage. The testing dataset is arbitrarily created and inserted already into the database.
 
+**Please visit [https://hipposerver.ddns.net:8803](https://hipposerver.ddns.net:8803) for a live demo!**
+
 ## Database Design
 
 The following is the database schema design:
@@ -65,6 +67,12 @@ $ mysql -u <USER> -p < build_database.sql
 $ mysql -u <USER> -p < build_dataset.sql
 ```
 
+Alternatively, you may use the pre-built testing database dump (file `dump.sql`) to create the database with testing dataset. Restore database using the command:
+
+```bash
+$  mysql -u <USER> -p < dump.sql
+```
+
 ### Step 3. Change the Default Settings
 
 In the program folder `API Code`, a file named `config.py` is for managing several global variables for the program. This include the database connection settings. Please change the **address**, **port**, **account**, and **account password** for accessing the previously created testing database on your machine.
@@ -91,3 +99,15 @@ If everything went well, you should see the following message:
  * Debugger PIN: 670-415-666
 ```
 
+### Step 5. Access the API
+
+Open up a web browser and head to the address:
+```
+http://<SERVER ADDR>:5000
+```
+
+The default address should be: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+A simple welcoming page with the documentation should show up as follow:
+
+![Demo Server Main Page](./demo_server.png)
