@@ -64,7 +64,7 @@ def def_para():
     # return those parameters in a dict
     return { "page": page, "size": size, "format": ret_format }
 
-# query the database and present the result
+# query the database and present the result (Q4)
 # if something went wrong, output the msg defined in the helper function
 def gen_response( sql, para, helper_funct ):
     # send the sql query
@@ -244,7 +244,7 @@ Usage: /product/numOfSold
     '''
     return msg
 
-# number of sold amount per product by date
+# number of sold amount per product by date (Q5)
 @app.route( "{}/product/numOfSoldByDate".format( config.api_head ) )
 def prod_num_of_sold_date():
     # obtain the parameters
