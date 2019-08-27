@@ -111,3 +111,37 @@ The default address should be: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 A simple welcoming page with the documentation should show up as follow:
 
 ![Demo Server Main Page](./demo_server.png)
+
+
+## Program File Description
+
+This section introduced the program fils within this project.
+
+```
+project
+│   ReadMe.pdf:                   This manual
+│   additional_questions.pdf:     My responses of the given additional questions
+│   requirements.txt:             File records the reqired Python library packages
+│   demo_server.png:              Image of the server screenshot
+│   schema.png:                   Image of the database schema design
+│
+└───API Code
+│   │   app.py:                   API server endpoint main program
+│   │   config.py:                Python file storing global variables and program settings
+│   │   query.py:                 Python file storing the function communicating with MariaDB (MySQL) database
+│   │   sql_command.py:           Python file storing the sql commands for each API endpoint
+│   │   utils.py:                 Python file stroing several self-defined utility functions
+│   │
+│   └───web
+│       └───static:               Store web page assets including CSS files, JavaScript files, font files, and images
+│       │
+│       └───templates:
+│           │   index.html:       Index page will accessing the url "http://<ADDR>:<PORT>"
+│           │   footer.html:      Footer information for index.html
+│           │   documentation.md: Manual to show on index.html
+│
+└───SQL
+    │   build_database.sql:       SQL commands to build up the testing database
+    │   build_dataset.sql:        SQL commands to create the testing dataset
+    │   dump.sql:                 Pre-built testing database dump
+```
