@@ -12,7 +12,7 @@ The server provides API endpoints to get information from the database in the fo
 
 The API server is implemented using ***Python-Flask*** with **Python 3.7**. A ***MariaDB (MySQL)*** open-source database software is utilized as the data storage. The testing dataset is arbitrarily created and inserted already into the database.
 
-**Please visit [https://hipposerver.ddns.net:8803](https://hipposerver.ddns.net:8803) for a live demo!**
+**Please visit [https://hipposerver.ddns.net:8805](https://hipposerver.ddns.net:8805) for a live demo!**
 
 ## Database Design
 
