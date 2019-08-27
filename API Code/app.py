@@ -25,14 +25,15 @@ app = Flask(
     template_folder='web/templates'
 )
 
+# server main page, will show part of the documentation
 @app.route( "/" )
 def index():
     return render_template( 'index.html' )
 
+# assets requests
 @app.route( "/documentation.md" )
 def manual():
     return render_template( 'documentation.md' )
-
 @app.route( "/<path:filename>" )
 def send_img( filename ):
     return send_from_directory( app.static_folder, filename )
