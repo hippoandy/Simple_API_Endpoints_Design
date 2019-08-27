@@ -20,6 +20,8 @@ The following is the database schema design:
 
 ![Database Schema Design](./schema.png)
 
+<div style="page-break-after: always;"></div>
+
 ## Implemented API Endpoints
 
 * Current API Version: ***v1***
@@ -44,8 +46,10 @@ The following is the database schema design:
 | `/product/showByID` | `prod_id` | Show the detail of a product by ID (`prod_id`). |
 | `/product/numOfSold` | `prod_id` | Show the number of sold per product, if product ID (`prod_id`) is given, return only the result with that ID. |
 | `/product/numOfSoldByDate` | `start_date`, `end_date`, `range`, `prod_id` | Show the number of sold amount per product specified by a date range and grouping by `day`, `week`, or `month`. Parameter `start_date` and `end_date` are for the time filtering and `range` values in [ "**day**", "**week**", "**month**" ] to determine the grouping. If `range` is not specified, grouping by `date` is default. If a product Id (`prod_id`) is given, return the result only with that ID. |
-| `category/numOfSold` | `cate_id` | Show the number of sold per category, if category ID (`cate_id`) is given, return only the result with that ID. |
+| `/category/numOfSold` | `cate_id` | Show the number of sold per category, if category ID (`cate_id`) is given, return only the result with that ID. |
 | `/category/purchasedByCustomer` | `cust_id` | Show the number of purchased amount in a certain category by a customer with ID (`cust_id`). |
+
+<div style="page-break-after: always;"></div>
 
 ## How to Run the Program
 
@@ -77,6 +81,8 @@ $  mysql -u <USER> -p < dump.sql
 
 In the program folder `API Code`, a file named `config.py` is for managing several global variables for the program. This include the database connection settings. Please change the **address**, **port**, **account**, and **account password** for accessing the previously created testing database on your machine.
 
+<div style="page-break-after: always;"></div>
+
 ### Step 4. Start-up the server
 
 After the database and testing dataset is ready, please navigate to the program folder `API Code`, a file named `app.py` is the program entry point. Use the following command to execute the program:
@@ -106,12 +112,29 @@ Open up a web browser and head to the address:
 http://<SERVER ADDR>:5000
 ```
 
-The default address should be: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+The default address should be [http://127.0.0.1:5000](http://127.0.0.1:5000). This page should show parts of the documentation.
+To try the API endpoints, please use the following format:
+```
+http://<SERVER ADDR>:5000/api/<API Ver>/<ENDPOINT LINK>
+```
+
+For example, to access the API `/order/listOrder`, use the address:
+[http://127.0.0.1:5000/api/v1/order/listOrder](http://127.0.0.1:5000/api/v1/order/listOrder)
+
+To add parameters, please use the following format:
+```
+http://<SERVER ADDR>:5000/api/<API Ver>/<ENDPOINT LINK>?<PARA 1>=<VALUE>&<PARA 2>=<VALUE>&...
+```
+
+For example, to **change output format to XML** of the previous example, use the address:
+[http://127.0.0.1:5000/api/v1/order/listOrder?format=xml](http://127.0.0.1:5000/api/v1/order/listOrder?format=xml)
+
 
 A simple welcoming page with the documentation should show up as follow:
 
 ![Demo Server Main Page](./demo_server.png)
 
+<div style="page-break-after: always;"></div>
 
 ## Program File Description
 
@@ -120,28 +143,28 @@ This section introduced the program fils within this project.
 ```
 project
 │   ReadMe.pdf:                   This manual
-│   additional_questions.pdf:     My responses of the given additional questions
-│   requirements.txt:             File records the reqired Python library packages
+│   additional_questions.pdf:     My responses of additional questions
+│   requirements.txt:             Records the reqired library packages
 │   demo_server.png:              Image of the server screenshot
 │   schema.png:                   Image of the database schema design
 │
 └───API Code
 │   │   app.py:                   API server endpoint main program
-│   │   config.py:                Python file storing global variables and program settings
-│   │   query.py:                 Python file storing the function communicating with MariaDB (MySQL) database
-│   │   sql_command.py:           Python file storing the sql commands for each API endpoint
-│   │   utils.py:                 Python file stroing several self-defined utility functions
+│   │   config.py:                Storing global variables and program settings
+│   │   query.py:                 Storing the function for db connection
+│   │   sql_command.py:           Storing the SQL commands
+│   │   utils.py:                 Stroing several utility functions
 │   │
 │   └───web
-│       └───static:               Store web page assets including CSS files, JavaScript files, font files, and images
+│       └───static:               Store main page assets
 │       │
 │       └───templates:
-│           │   index.html:       Index page will accessing the url "http://<ADDR>:<PORT>"
+│           │   index.html:       Server Main page
 │           │   footer.html:      Footer information for index.html
 │           │   documentation.md: Manual to show on index.html
 │
 └───SQL
-    │   build_database.sql:       SQL commands to build up the testing database
-    │   build_dataset.sql:        SQL commands to create the testing dataset
+    │   build_database.sql:       To build up the testing database
+    │   build_dataset.sql:        To create the testing dataset
     │   dump.sql:                 Pre-built testing database dump
 ```
