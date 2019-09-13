@@ -321,6 +321,20 @@ GROUP BY Product.prod_id
 ;
 ```
 
+If only want to show product that is sold, use `INNER JOIN`:
+```sql
+SELECT
+    Product.prod_id, Product.prod_name,
+    SUM(amount) AS sold
+FROM
+    Product
+    INNER JOIN
+        OrderDetail
+    ON OrderDetail.prod_id = Product.prod_id
+GROUP BY Product.prod_id
+;
+```
+
 ## Number of Item Sold of a Product
 ```sql
 SELECT
@@ -337,12 +351,12 @@ FROM
 GROUP BY Product.prod_id
 ```
 
-## Number of Item Sold per Product by Date
+## Number of Item Sold per Product by Date, Week, Month, or Year
 
 ```sql
 SELECT
     Product.prod_id, Product.prod_name,
-    SUM(sold)
+    SUM(sold) AS sold
 FROM
     Product
     INNER JOIN
@@ -360,6 +374,10 @@ GROUP BY DATE(timestamp), Product.prod_id
 ORDER BY DATE(timestamp)
 ;
 ```
+
+By week, use `WEEK(timestamp)`.
+By month, use `MONTH(timestamp)`.
+By year, use `YEAR(timestamp)`.
 
 ## Orders by Customer
 
