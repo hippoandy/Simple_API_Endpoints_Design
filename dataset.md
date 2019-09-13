@@ -292,7 +292,7 @@ ON a.cate_id = b.cate_id;
 ## Number of Item Sold per Category
 ```sql
 SELECT
-    CateProd.cate_id, CateProd.cate_name
+    CateProd.cate_id, CateProd.cate_name,
     SUM(amount) AS sold
 FROM
     OrderDetail
