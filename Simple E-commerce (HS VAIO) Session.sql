@@ -1,19 +1,14 @@
 SELECT
-    Product.prod_id, Product.prod_name,
-    SUM(sold) AS sold
+    CateProd.cate_id, CateProd.cate_name,
+    SUM(amount) AS sold
 FROM
-    Product
-    INNER JOIN
+    OrderDetail
+    LEFT JOIN
         (
-            SELECT
-                OrderDetail.prod_id, ShoppingOrder.timestamp,
-                OrderDetail.amount AS sold
-            FROM ShoppingOrder
-            JOIN
-                OrderDetail
-            ON ShoppingOrder.ord_id = OrderDetail.ord_id
-        ) AS AllOrderWithDetail
-    ON AllOrderWithDetail.prod_id = Product.prod_id
-GROUP BY MONTH(timestamp), Product.prod_id
-ORDER BY MONTH(timestamp)
-;
+            SELECT b.prod_id AS prod_id, a.cate_id, a.cate_name
+            FROM Category AS a
+            INNER JOIN ProductCategory AS b ON a.cate_id = b.cate_id
+            ORDER BY b.prod_id ASC
+        ) AS CateProd
+    ON OrderDetail.prod_id = CateProd.prod_id
+GROUP BY cate_id;
