@@ -108,3 +108,6 @@ venv.bak/
 *~$*.docx
 *~$*.ppt
 *~$*.pptx
+
+# vscode
+*.vscode
