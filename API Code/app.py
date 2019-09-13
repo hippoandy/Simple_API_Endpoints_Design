@@ -38,7 +38,7 @@ def manual():
 def send_img( filename ):
     return send_from_directory( app.static_folder, filename )
 
-## General Funtions -----------------------------------------------
+## General Functions ----------------------------------------------
 # determine the output format
 api_output = {
     "json": utils.sql_to_json,
@@ -88,7 +88,7 @@ class MyResponse( Response ):
             else:
                 kwargs[ 'mimetype' ] = 'text/csv'
         return super( MyResponse, self ).__init__( response, **kwargs )
-## ----------------------------------------------- General Funtions
+## ---------------------------------------------- General Functions
 
 ## API Endpoints --------------------------------------------------
 
