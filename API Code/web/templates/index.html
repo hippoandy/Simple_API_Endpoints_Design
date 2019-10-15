@@ -9,8 +9,8 @@
 	<title>Simple API Server Demo</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="css/main.css" />
-	<noscript><link rel="stylesheet" href="css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="{{url_for('simpleapidemo.static', filename='css/main.css')}}" />
+	<noscript><link rel="stylesheet" href="{{url_for('simpleapidemo.static', filename='css/noscript.css')}}" /></noscript>
 </head>
 <body class="is-preload">
 
@@ -19,7 +19,7 @@
 		<a href="/" class="title">Simple API Server Demo</a>
 		<nav>
 			<ul>
-				<li><a href="/">Home</a></li>
+				<li><a href="{{url_for('simpleapidemo.index')}}">Home</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -43,12 +43,12 @@
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.scrollex.min.js"></script>
-<script src="js/jquery.scrolly.min.js"></script>
-<script src="js/browser.min.js"></script>
-<script src="js/breakpoints.min.js"></script>
-<script src="js/util.js"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/jquery.min.js')}}"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/jquery.scrollex.min.js')}}"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/jquery.scrolly.min.js')}}"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/browser.min.js')}}"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/breakpoints.min.js')}}"></script>
+<script src="{{url_for('simpleapidemo.static', filename='js/util.js')}}"></script>
 <script>
 $( document ).ready(function()
 {

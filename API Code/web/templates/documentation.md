@@ -9,7 +9,7 @@ The API server is implemented using ***Python-Flask*** with **Python 3.7**. A **
 
 The following is the database schema design:
 
-<img src="img/schema.png" alt="Database Schema Design" width="800px"/>
+<img src="{{url_for('simpleapidemo.static', filename='img/schema.png')}}" alt="Database Schema Design" width="800px"/>
 <br />
 
 ## Implemented API Endpoints
@@ -41,19 +41,12 @@ The following is the database schema design:
 
 ## Try it Out!
 
-The default address should be [http://127.0.0.1:5000](http://127.0.0.1:5000). This page should show parts of the documentation.
 To try the API endpoints, please use the following format:
 ```
-http://<SERVER ADDR>:5000/api/<API Ver>/<ENDPOINT LINK>
+http://<SERVER ADDR>/api/<API Ver>/<ENDPOINT LINK>
 ```
-
-For example, to access the API `/order/listOrder`, use the address:
-[http://127.0.0.1:5000/api/v1/order/listOrder](http://127.0.0.1:5000/api/v1/order/listOrder)
 
 To add parameters, please use the following format:
 ```
 http://<SERVER ADDR>:5000/api/<API Ver>/<ENDPOINT LINK>?<PARA 1>=<VALUE>&<PARA 2>=<VALUE>&...
 ```
-
-For example, to **change output format to XML** of the previous example, use the address:
-[http://127.0.0.1:5000/api/v1/order/listOrder?format=xml](http://127.0.0.1:5000/api/v1/order/listOrder?format=xml)
