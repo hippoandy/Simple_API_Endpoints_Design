@@ -1,3 +1,8 @@
+## blueprint topics:
+# ref. https://kite.com/python/examples/1570/flask-construct-a-blueprint-and-set-a-common-url-prefix-for-each-blueprint-route
+# ref. https://stackoverflow.com/questions/18967441/add-a-prefix-to-all-flask-routes
+# ref. https://stackoverflow.com/questions/22152840/flask-blueprint-static-directory-does-not-work
+
 ''' A Demo Customer Management System
 
 Author: Yu-Chang (Andy) Ho
@@ -8,7 +13,7 @@ It provides APIs to communicate with the MariaDB (MySQL) database.
 
 '''
 
-from flask import Flask, render_template, request, Response, send_from_directory
+from flask import Flask, render_template, request, Response, send_from_directory, Blueprint
 from datetime import datetime
 
 import config
@@ -20,21 +25,26 @@ import query
 # create the flask application
 app = Flask(
     __name__,
-    static_url_path='', 
-    static_folder='web/static',
-    template_folder='web/templates'
+    # static_url_path='', 
+    # static_folder='web/static',
+    # template_folder='web/templates'
 )
 
+bp = Blueprint( 'simpleapidemo', __name__,
+                static_folder='web/static',
+                template_folder='web/templates',
+                url_prefix='/simpleapidemo' )
+
 # server main page, will show part of the documentation
-@app.route( "/" )
+@bp.route( "/" )
 def index():
     return render_template( 'index.html' )
 
 # assets requests
-@app.route( "/documentation.md" )
+@bp.route( "/documentation.md" )
 def manual():
     return render_template( 'documentation.md' )
-@app.route( "/<path:filename>" )
+@bp.route( "/<path:filename>" )
 def send_img( filename ):
     return send_from_directory( app.static_folder, filename )
 
@@ -93,7 +103,7 @@ class MyResponse( Response ):
 ## API Endpoints --------------------------------------------------
 
 # list of order
-@app.route( "{}/order/listOrder".format( config.api_head ) )
+@bp.route( "{}/order/listOrder".format( config.api_head ) )
 def list_order():
     # obtain the parameters
     ## parameters with default values
@@ -113,7 +123,7 @@ Usage: /order/listOrder
     return msg
 
 # show order by id
-@app.route( "{}/order/showByID".format( config.api_head ) )
+@bp.route( "{}/order/showByID".format( config.api_head ) )
 def ord_show_by_id():
     # obtain the parameters
     ## parameters with default values
@@ -140,7 +150,7 @@ Usage: /order/showByID
     return msg
 
 # list of order by customer (Q7)
-@app.route( "{}/order/orderByCustomer".format( config.api_head ) )
+@bp.route( "{}/order/orderByCustomer".format( config.api_head ) )
 def ord_order_by_customer():
     # obtain the parameters
     ## parameters with default values
@@ -168,7 +178,7 @@ Usage: /order/orderByCustomer
     return msg
 
 # list of product
-@app.route( "{}/product/listProduct".format( config.api_head ) )
+@bp.route( "{}/product/listProduct".format( config.api_head ) )
 def list_product():
     # obtain the parameters
     ## parameters with default values
@@ -188,7 +198,7 @@ Usage: /product/listProduct
     return msg
 
 # show product by id
-@app.route( "{}/product/showByID".format( config.api_head ) )
+@bp.route( "{}/product/showByID".format( config.api_head ) )
 def prod_show_by_id():
     # obtain the parameters
     ## parameters with default values
@@ -215,7 +225,7 @@ Usage: /product/showByID
     return msg
 
 # number of sold amount per category
-@app.route( "{}/product/numOfSold".format( config.api_head ) )
+@bp.route( "{}/product/numOfSold".format( config.api_head ) )
 def prod_num_of_sold():
     # obtain the parameters
     ## parameters with default values
@@ -245,7 +255,7 @@ Usage: /product/numOfSold
     return msg
 
 # number of sold amount per product by date (Q5)
-@app.route( "{}/product/numOfSoldByDate".format( config.api_head ) )
+@bp.route( "{}/product/numOfSoldByDate".format( config.api_head ) )
 def prod_num_of_sold_date():
     # obtain the parameters
     ## parameters with default values
@@ -302,7 +312,7 @@ Usage: /product/numOfSoldByDate
     return msg
 
 # number of sold amount per category
-@app.route( "{}/category/numOfSold".format( config.api_head ) )
+@bp.route( "{}/category/numOfSold".format( config.api_head ) )
 def cate_num_of_sold():
     # obtain the parameters
     ## parameters with default values
@@ -332,7 +342,7 @@ Usage: /category/numOfSold
     return msg
 
 # number of purchased amount in category by customer (Q3)
-@app.route( "{}/category/purchasedByCustomer".format( config.api_head ) )
+@bp.route( "{}/category/purchasedByCustomer".format( config.api_head ) )
 def cate_purchased_by_cust():
     # obtain the parameters
     ## parameters with default values
@@ -360,5 +370,7 @@ Usage: /category/purchasedByCustomer
 
 ## -------------------------------------------------- API Endpoints
 
+app.register_blueprint( bp )
+
 if __name__ == '__main__':
-    app.run( use_reloader=True, debug=True )
+    app.run( use_reloader=True, debug=False )
